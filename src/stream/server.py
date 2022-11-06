@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import socket
+import os
 import sys
 from time import sleep
 import random
@@ -19,6 +20,7 @@ x, y, z = random.random(), random.random(), random.random()
 for i in range(10):
 
     # Pack three 32-bit floats into message and send
-    message = pack('3f', x, y, z)
+    message = pack('3f', x)
     sock.sendto(message, server_address)
+    x =  os.system(cat /tmp/adc.fifo)
     
