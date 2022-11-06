@@ -18,4 +18,4 @@ while True:
     # Wait for message
     message, address = sock.recvfrom(4096)
     print "received message:", data
-    subprocess.call(data.split()
+    subprocess.call(data.split())
