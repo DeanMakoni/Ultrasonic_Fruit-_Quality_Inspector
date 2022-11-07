@@ -8,7 +8,7 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 
-#include "rpi_dma_utils.h"
+#include "DataAcq.h"
 
 // If non-zero, enable PWM hardware output
 #define PWM_OUT         0
