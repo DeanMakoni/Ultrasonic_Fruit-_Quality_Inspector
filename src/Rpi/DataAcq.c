@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <poll.h>
-#include "rpi_dma_utils.h"
+#include "DataAcqutils.h"
 
 #define VERSION "0.20"
 
