@@ -1,0 +1,51 @@
+{
+  "pi": {
+    "name": "Ultrasound Fruit Quality Inspector Server",
+    "description": "The pi is the server of the ultrasonic fruit quality inspector framework.",
+    "port": 8484,
+    "sensors": {
+      "ultrasound": {
+        "name": "Ultrasound Sensor",
+        "description": "Sensors used to collect ultrasound.",
+        "unit": "1"
+      }
+    },
+
+    "instructions":{
+      "sample": {
+        "name": "Sample",
+        "description": "An instruction used to start sampling and collecting data"
+      },
+    
+      "train": {
+        "name": "Train",
+        "description": "An instruction used to train the model to identofy fruits"
+      },
+      "streamsample": {
+        "name": "Stream Sample",
+        "description": "An instruction used to stream the data that is being collected to the computer for processing"
+      },
+        "frequency": {
+        "name": "Sampling frequency",
+        "description": "An instruction used to cahnge the sampling frequency"
+      }
+     },
+    "results": {
+        "traineddata": {
+          "name": "Trained data",
+          "description": "View the trained model that identifies the fruits"
+        },
+        "receivedecho": {
+          "name": "Received Echo",
+          "description": "Check the plots of the received echo"
+        },
+       "image": {
+          "name": "View the reconsructed Image",
+          "description": "Check the plots of the received echo"
+        }
+     }
+   }
+} 
+
+
+

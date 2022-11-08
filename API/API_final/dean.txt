@@ -1,1 +1,14 @@
-dean
+dean.txt
+middleware
+nodejs-logo.svg
+node_modules
+package.json
+package-lock.json
+plugins
+public
+resources
+routes
+servers
+structure.txt
+utils
+wot-server.js
