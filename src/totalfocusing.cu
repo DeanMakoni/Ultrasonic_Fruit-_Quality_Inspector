@@ -52,24 +52,11 @@ __global__ void add(int *d_a, int *d_c, int *d_result, int n)
     int idx;
     d_result[row * n + col] = d_result[row * n + col] + d_c[row * n + col];       
 }
-__global__ void gpu_matrix_mult(int *a,int *b, int *c, int m, int n, int k)
-{ 
-    int row = blockIdx.y * blockDim.y + threadIdx.y; 
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
-    int sum = 0;
-    if( col < k && row < m) 
-    {
-        for(int i = 0; i < n; i++) 
-        {
-            sum += a[row * n + i] * b[i * k + col];
-        }
-        c[row * k + col] = sum;
-    }
-} 
+ 
 
 /*
 *********************************************************************
-function name: gpu_square_matrix_mult
+function name: total_focusing
 description: dot product of two matrix (not only square) in GPU
 parameters: 
             &a GPU device pointer to a n X n matrix (A)
@@ -147,21 +134,7 @@ __global__ void total_focusing(int *d_a, int *d_b, int *d_result, int n,int **ar
 
 /*
 *********************************************************************
-function name: gpu_matrix_transpose
-description: matrix transpose
-parameters: 
-            &mat_in GPU device pointer to a rows X cols matrix
-            &mat_out GPU device output purpose pointer to a cols X rows matrix 
-            to store the result
-Note:
-    grid and block should be configured as:
-        dim3 dim_grid((n - 1) / BLOCK_SIZE + 1, (n - 1) / BLOCK_SIZE + 1, 1);
-        dim3 dim_block(BLOCK_SIZE, BLOCK_SIZE, 1);
-return: none
-*********************************************************************
-
-*********************************************************************
-function name: cpu_matrix_mult
+function name: totalfocusing
 description: dot product of two matrix (not only square) in CPU, 
              for validating GPU results
 parameters: 
@@ -172,7 +145,7 @@ parameters:
 return: none
 *********************************************************************
 */
-void cpu_matrix_mult(int *h_a, int *h_b, int *h_result, int m, int n, int k) {
+void cpu_totalfocusing(int *h_a, int *h_b, int *h_result, int m, int n, int k) {
     for (int i = 0; i < m; ++i) 
     {
         for (int j = 0; j < k; ++j) 
@@ -359,13 +332,13 @@ int main(int argc, char const *argv[])
 
     // compute time elapse on GPU computing
     cudaEventElapsedTime(&gpu_elapsed_time_ms, start, stop);
-    printf("Time elapsed on matrix multiplication of %dx%d . %dx%d on GPU: %f ms.\n\n", m, n, n, k, gpu_elapsed_time_ms);
+    printf("Time elapsed on image reconstruction of %dx%d . %dx%d on GPU: %f ms.\n\n", m, n, n, k, gpu_elapsed_time_ms);
     
      printf("\n");
     // start the CPU version
     cudaEventRecord(start, 0);
 
-    cpu_matrix_mult(h_a, h_b, h_cc, m, n, k);
+    cpu_totalfocusing(h_a, h_b, h_cc, m, n, k);
 
     cudaEventRecord(stop, 0);
     cudaEventSynchronize(stop);
